@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class AcceptanceTest {
@@ -16,6 +17,25 @@ class AcceptanceTest {
         val expected = listOf(
             listOf(false, false, false),
             listOf(false, false, false),
+            listOf(false, false, false),
+        )
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    @Disabled
+    fun `blinker pattern`() {
+        val startingWorld = listOf(
+            listOf(false, true, false),
+            listOf(false, true, false),
+            listOf(false, true, false),
+        )
+
+        val actual = evolve(startingWorld)
+
+        val expected = listOf(
+            listOf(false, false, false),
+            listOf(true, true, true),
             listOf(false, false, false),
         )
         assertEquals(expected, actual)
