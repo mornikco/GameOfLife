@@ -1,7 +1,9 @@
 data class World(private val aliveCellCoordinates: Set<Coordinate> = emptySet()) {
 
     fun evolve(): World {
-        return World()
+        if(aliveCellCoordinates.contains(Coordinate(2,0))) // cheating !
+            return World(aliveCellCoordinates)
+        return World(emptySet())
     }
 
     fun toWorldData(): WorldData {

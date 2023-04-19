@@ -23,6 +23,24 @@ class AcceptanceTest {
     }
 
     @Test
+    fun `static 2x2 block pattern`() {
+        val startingWorld = listOf(
+            listOf(false, true, true),
+            listOf(false, true, true),
+            listOf(false, false, false),
+        )
+
+        val actual = evolve(startingWorld)
+
+        val expected = listOf(
+            listOf(false, true, true),
+            listOf(false, true, true),
+            listOf(false, false, false),
+        )
+        assertEquals(expected, actual)
+    }
+
+    @Test
     @Disabled
     fun `blinker pattern`() {
         val startingWorld = listOf(
