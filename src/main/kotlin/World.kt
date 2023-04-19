@@ -1,4 +1,4 @@
-class World(private val aliveCellCoordinates: List<Coordinate> = emptyList()) {
+data class World(private val aliveCellCoordinates: Set<Coordinate> = emptySet()) {
 
     fun evolve(): World {
         return World()
@@ -14,7 +14,13 @@ class World(private val aliveCellCoordinates: List<Coordinate> = emptyList()) {
 
     companion object {
         fun from(worldData: WorldData): World {
-            return World()
+            val aliveCellCoordinates = mutableSetOf<Coordinate>()
+            worldData.forEachIndexed { y, row ->
+                row.forEachIndexed { x, value ->
+                    if(value) aliveCellCoordinates.add(Coordinate(x, y))
+                }
+            }
+            return World(aliveCellCoordinates)
         }
     }
 

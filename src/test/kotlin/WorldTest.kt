@@ -16,4 +16,17 @@ class WorldTest {
         )
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `world is created from world data`() {
+        val data = listOf(
+            listOf(true, false, false),
+            listOf(true, false, true),
+            listOf(false, false, false),
+        )
+        val actual = World.from(data)
+
+        val expected = World(aliveCellCoordinates = setOf(Coordinate(0, 1), Coordinate(2, 1), Coordinate(0, 0)))
+        assertEquals(expected, actual)
+    }
 }
