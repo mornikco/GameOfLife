@@ -1,9 +1,7 @@
 fun evolve(startingWorld:String):String {
-    val world = World()
-
-    // --- val world = World.from(startingWorldString)
+    val world = WorldDeserializer().from(startingWorld)
     // --- val evolvedWorld = world.evolve()
     // --- return evolvedWorld.toString()
 
-    return world.toString()
+    return World().toString()
 }
