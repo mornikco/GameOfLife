@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 
@@ -20,7 +19,6 @@ class AcceptanceTests {
         assertEquals(expected, evolvedWorld)
     }
 
-    @Disabled
     @Test
     fun `small world with some live cell`() {
         val startingWorld =

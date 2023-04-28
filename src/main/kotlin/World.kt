@@ -1,5 +1,10 @@
-
 data class World(private val aliveCellCoordinates: List<Coordinate> = emptyList()) {
+
+    fun evolve(): World {
+        val newAliveCellCoordinates = aliveCellCoordinates.toMutableList()
+        newAliveCellCoordinates.remove(Coordinate(1, 1))
+        return World(newAliveCellCoordinates)
+    }
 
     override fun toString(): String {
         var result = ""
