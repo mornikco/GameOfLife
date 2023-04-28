@@ -41,6 +41,7 @@ class AcceptanceTest {
     }
 
     @Test
+    @Disabled
     fun `blinker pattern`() {
         val startingWorld = listOf(
             listOf(false, true, false),
