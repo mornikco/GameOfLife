@@ -41,21 +41,21 @@ class WorldTest {
 
     @Test
     fun `evolve a world with a single alive cell who die for loneliness`() {
-        val emptyWorld = World(aliveCellCoordinates = setOf(Coordinate(1, 1)))
+        val singleAliveCellWorld = World(aliveCellCoordinates = setOf(Coordinate(1, 1)))
 
-        val actual = emptyWorld.evolve()
+        val actual = singleAliveCellWorld.evolve()
 
         assertEquals(World(aliveCellCoordinates = emptySet()), actual)
     }
 
     @Test
     fun `evolve a world with a four closed alive cells who remain alive`() {
-        val emptyWorld = World(aliveCellCoordinates = setOf(
+        val startingWorld = World(aliveCellCoordinates = setOf(
             Coordinate(1, 0), Coordinate(2, 0),
             Coordinate(1, 1), Coordinate(2, 1)
         ))
 
-        val actual = emptyWorld.evolve()
+        val actual = startingWorld.evolve()
 
         assertEquals(World(aliveCellCoordinates = setOf(
             Coordinate(1, 0), Coordinate(2, 0),
