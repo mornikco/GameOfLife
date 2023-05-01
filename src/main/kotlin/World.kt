@@ -1,9 +1,29 @@
 data class World(private val aliveCellCoordinates: Set<Coordinate> = emptySet()) {
 
     fun evolve(): World {
-        if(aliveCellCoordinates.contains(Coordinate(2,0))) // cheating !
-            return World(aliveCellCoordinates)
-        return World(emptySet())
+        val evolvedAliveCellCoordinates = mutableSetOf<Coordinate>()
+
+        aliveCellCoordinates.forEach { actual ->
+            val aliveNeighbours = countAliveNeighbours(actual)
+            if (aliveNeighbours == 2 || aliveNeighbours == 3)
+                evolvedAliveCellCoordinates.add(actual)
+        }
+        return World(evolvedAliveCellCoordinates)
+    }
+
+    private fun countAliveNeighbours(actual: Coordinate): Int {
+        val neighboursState = listOf(
+            aliveCellCoordinates.contains(Coordinate(actual.x-1, actual.y-1)),
+            aliveCellCoordinates.contains(Coordinate(actual.x-1, actual.y)),
+            aliveCellCoordinates.contains(Coordinate(actual.x-1, actual.y+1)),
+            aliveCellCoordinates.contains(Coordinate(actual.x, actual.y-1)),
+            aliveCellCoordinates.contains(Coordinate(actual.x, actual.y+1)),
+            aliveCellCoordinates.contains(Coordinate(actual.x+1, actual.y-1)),
+            aliveCellCoordinates.contains(Coordinate(actual.x+1, actual.y)),
+            aliveCellCoordinates.contains(Coordinate(actual.x+1, actual.y+1)),
+        )
+
+        return neighboursState.count { it }
     }
 
     fun toWorldData(): WorldData {

@@ -62,4 +62,19 @@ class WorldTest {
             Coordinate(1, 1), Coordinate(2, 1)
         )), actual)
     }
+
+    @Test
+    fun `alive cells with two alive neighbors remain alive, and alive cells with only one alive neighbors die`() {
+        val startingWorld = World(aliveCellCoordinates = setOf(
+            Coordinate(0, 0),
+            Coordinate(1, 1),
+            Coordinate(2, 2),
+        ))
+
+        val actual = startingWorld.evolve()
+
+        assertEquals(World(aliveCellCoordinates = setOf(
+            Coordinate(1, 1)
+        )), actual)
+    }
 }
