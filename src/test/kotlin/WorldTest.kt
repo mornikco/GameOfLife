@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class WorldTest {
@@ -75,6 +75,21 @@ class WorldTest {
 
         assertEquals(World(aliveCellCoordinates = setOf(
             Coordinate(1, 1)
+        )), actual)
+    }
+
+    @Test
+    fun `a dead cell with three alive neighbours come to live`() {
+        val startingWorld = World(aliveCellCoordinates = setOf(
+            Coordinate(0, 0),
+            Coordinate(0, 1), Coordinate(1, 1)
+        ))
+
+        val actual = startingWorld.evolve()
+
+        assertEquals(World(aliveCellCoordinates = setOf(
+            Coordinate(0, 0), Coordinate(1, 0),
+            Coordinate(0, 1), Coordinate(1, 1)
         )), actual)
     }
 }

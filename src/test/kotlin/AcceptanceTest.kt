@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 class AcceptanceTest {
@@ -41,7 +40,6 @@ class AcceptanceTest {
     }
 
     @Test
-    @Disabled
     fun `blinker pattern`() {
         val startingWorld = listOf(
             listOf(false, true, false),

@@ -3,10 +3,26 @@ data class World(private val aliveCellCoordinates: Set<Coordinate> = emptySet())
     fun evolve(): World {
         val evolvedAliveCellCoordinates = mutableSetOf<Coordinate>()
 
-        aliveCellCoordinates.forEach { actual ->
-            val aliveNeighbours = countAliveNeighbours(actual)
-            if (aliveNeighbours == 2 || aliveNeighbours == 3)
-                evolvedAliveCellCoordinates.add(actual)
+        val minX = aliveCellCoordinates.minOfOrNull { it.x } ?: 0
+        val minY = aliveCellCoordinates.minOfOrNull { it.y } ?: 0
+        val maxX = aliveCellCoordinates.maxOfOrNull { it.x } ?: 0
+        val maxY = aliveCellCoordinates.maxOfOrNull { it.y } ?: 0
+
+        for (y in minY-1..maxY+1) {
+            for (x in minX-1..maxX+1) {
+                val currentCoordinate = Coordinate(x, y)
+                val wasAlive = aliveCellCoordinates.contains(currentCoordinate)
+                val aliveNeighbours = countAliveNeighbours(currentCoordinate)
+
+                if(wasAlive) {
+                    if (aliveNeighbours == 2 || aliveNeighbours == 3)
+                        evolvedAliveCellCoordinates.add(currentCoordinate)
+                } else {
+                    if(aliveNeighbours == 3) {
+                        evolvedAliveCellCoordinates.add(currentCoordinate)
+                    }
+                }
+            }
         }
         return World(evolvedAliveCellCoordinates)
     }
